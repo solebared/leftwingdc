@@ -5,6 +5,17 @@
 // To restart press CTRL + C in terminal and run `gridsome develop`
 
 module.exports = {
-  siteName: 'Gridsome',
-  plugins: []
+  siteName: 'Left Wing DC',
+  plugins: [
+    {
+      use: 'gridsome-plugin-tailwindcss',
+      options: {
+        purgeConfig: {},
+        presetEnvConfig: {},
+        shouldPurge: true,
+        shouldImport: true,
+        shouldTimeTravel: true,
+      }
+    },
+  ]
 }

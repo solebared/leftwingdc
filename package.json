@@ -7,7 +7,9 @@
     "explore": "gridsome explore"
   },
   "dependencies": {
-    "gridsome": "^0.6.0"
+    "gridsome": "^0.6.0",
+    "typeface-annie-use-your-telescope": "^0.0.72",
+    "typeface-open-sans": "^0.0.75"
   },
   "devDependencies": {
     "gridsome-plugin-tailwindcss": "^2.2.19"

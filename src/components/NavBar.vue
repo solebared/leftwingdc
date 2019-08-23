@@ -1,14 +1,14 @@
 <template>
   <header>
-    <nav class="flex flex-wrap items-center justify-between bg-red-700 text-4xl text-white p-5">
-      <g-link :to="currentNavItem.path">
+    <nav class="flex flex-wrap items-center justify-between text-4xl text-red-700 p-5">
+      <a href="/" @click.prevent="toggle" class="flex-grow">
         {{ currentNavItem.breadcrumbLabel || currentPage }}
-      </g-link>
+      </a>
 
       <div class="block">
         <button
           @click="toggle"
-          class="px-3 py-2 border rounded text-red-300 border-red-500 hover:text-white hover:border-white focus:outline-none"
+          class="px-3 py-2 border rounded border-red-700 text-red-700 focus:outline-none"
         >
           <svg class="fill-current h-4 w-4" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
             <title>Menu</title>
@@ -17,15 +17,25 @@
         </button>
       </div>
 
-      <g-link
-        v-if="!collapsed"
-        v-for="(item, key) of remainingNavItems"
-        :key="key"
-        :to="item.path"
-        class="block w-full mt-4 text-red-300 hover:text-white"
-      >
-        {{ key }}
-      </g-link>
+      <transition name="fade">
+        <div
+          v-show="!collapsed"
+          class="block w-full text-black"
+        >
+          <g-link
+            v-for="(item, key) of remainingNavItems"
+            :key="key"
+            :to="item.path"
+            class="block w-full hover:text-red-700"
+          >
+            {{ key }}
+          </g-link>
+        </div>
+      </transition>
+
+      <div class="block w-full">
+        <hr class="border-red-700 mt-4" />
+      </div>
     </nav>
   </header>
 </template>
@@ -43,6 +53,7 @@ export default {
   navItems: {
     'Home':     {path: '/', breadcrumbLabel: 'Left Wing DC'},
     'About us': {path: '/about'},
+    'Guide':    {path: '/guide'},
   },
   computed: {
     currentNavItem() {
@@ -64,3 +75,8 @@ export default {
   },
 }
 </script>
+
+<style>
+.fade-enter-active, .fade-leave-active { transition: all .5s ease-in; }
+.fade-enter, .fade-leave-to { opacity: 0; }
+</style>

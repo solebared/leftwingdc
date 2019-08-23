@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout :current-page="$options.metaInfo.title">
     <h1 class='font-title text-4xl'>Clap, clap, clap!</h1>
 
     <p>

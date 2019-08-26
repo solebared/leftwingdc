@@ -1,6 +1,6 @@
 ---
 title: About us
-nav:   true
+navIndex: 1
 image: ../images/lwfc-logo.jpg
 ---
 

@@ -1,26 +1,49 @@
 <template>
   <Layout current-page="/">
     <nav class="flex flex-wrap items-center justify-around">
-      <figure class="flex flex-col items-center mb-4">
-        <g-link to="/about-us">
-          <g-image alt="About us" width="300" src="~/../content/images/lwfc-logo.jpg" quality="100" class="rounded-full"/>
-          <figcaption class="text-center">About us</figcaption>
-        </g-link>
-      </figure>
-      <figure class="flex flex-col items-center mb-4">
-        <g-link to="/guide">
-          <g-image alt="Guide" width="300" src="~/../content/images/circle-bw.jpg" quality="100" class="rounded-full"/>
-          <figcaption class="text-center">Guide</figcaption>
+      <figure
+        v-for="({title, path, image}) in navPages"
+        :key="path"
+        class="flex flex-col items-center mb-4"
+      >
+        <g-link :to="path">
+          <g-image
+            :src="image"
+            alt="title"
+            class="rounded-full"
+          />
+          <figcaption class="text-center">
+            {{ title }}
+          </figcaption>
         </g-link>
       </figure>
     </nav>
   </Layout>
 </template>
 
+<page-query>
+query {
+  navPages: allContentPage(filter: {navIndex: {gt: 0}}, sortBy: "navIndex", order: ASC) {
+    edges {
+      node {
+        title
+        path
+        image (width: 300, quality: 100)
+      }
+    }
+  }
+}
+</page-query>
+
 <script>
 export default {
   metaInfo: {
     title: 'Home'
-  }
+  },
+  computed: {
+    navPages() {
+      return this.$page.navPages.edges.map(edge => edge.node)
+    },
+  },
 }
 </script>

@@ -1,6 +1,6 @@
 ---
 title: Guide
-nav:   true
+navIndex: 2
 image: ../images/circle-bw.jpg
 ---
 

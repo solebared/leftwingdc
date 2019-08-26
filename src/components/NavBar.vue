@@ -42,7 +42,7 @@
 
 <static-query>
 query {
-  navPages: allContentPage(filter: {nav: {eq: true}}) {
+  navPages: allContentPage(filter: {navIndex: {gt: 0}}, sortBy: "navIndex", order: ASC) {
     edges {
       node {
         title

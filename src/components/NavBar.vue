@@ -2,7 +2,7 @@
   <header>
     <nav class="flex flex-wrap items-center justify-between text-4xl text-red-700 p-5">
       <a href="/" @click.prevent="toggle" class="flex-grow">
-        {{ currentNavItem.breadcrumbLabel || currentPage }}
+        {{ currentNavItem.breadcrumbTitle || currentNavItem.title }}
       </a>
 
       <div class="block">
@@ -23,12 +23,12 @@
           class="block w-full text-black"
         >
           <g-link
-            v-for="(item, key) of remainingNavItems"
-            :key="key"
+            v-for="item in remainingNavItems"
+            :key="item.path"
             :to="item.path"
             class="block w-full hover:text-red-700"
           >
-            {{ key }}
+            {{ item.title }}
           </g-link>
         </div>
       </transition>
@@ -40,6 +40,19 @@
   </header>
 </template>
 
+<static-query>
+query {
+  navPages: allContentPage(filter: {nav: {eq: true}}) {
+    edges {
+      node {
+        title
+        path
+      }
+    }
+  }
+}
+</static-query>
+
 <script>
 export default {
   props: {
@@ -50,22 +63,24 @@ export default {
       collapsed: true,
     }
   },
-  navItems: {
-    'Home':     {path: '/', breadcrumbLabel: 'Left Wing DC'},
-    'About us': {path: '/about'},
-    'Guide':    {path: '/guide'},
-  },
   computed: {
+    allNavItems() {
+      return this.$static.navPages.edges.map((edge) => edge.node).concat([{
+        title: 'Home',
+        path: '/',
+        breadcrumbTitle: 'Left Wing DC',
+      }])
+    },
     currentNavItem() {
-      return this.$options.navItems[this.currentPage]
+      return this.allNavItems.find(item => item.path == this.currentPage)
     },
     remainingNavItems() {
-      const remaining = {}
-      Object
-        .keys(this.$options.navItems)
-        .filter(title => title != this.currentPage)
-        .forEach(title => remaining[title] = this.$options.navItems[title])
-      return remaining
+      return this.allNavItems.filter(item => item.path != this.currentPage)
+    },
+  },
+  watch: {
+    currentPage() {
+      this.collapsed = true
     },
   },
   methods: {

@@ -18,5 +18,13 @@ module.exports = {
         shouldTimeTravel: true,
       }
     },
-  ]
+    {
+      use: '@gridsome/source-filesystem',
+      options: {
+        typeName: 'ContentPage',
+        path: 'content/pages/*.md',
+        route: '/:slug',
+      }
+    }
+  ],
 }

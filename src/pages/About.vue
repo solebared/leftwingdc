@@ -1,8 +1,7 @@
 <template>
   <!-- TODO: is there a way to figure this out from within Layout/NavBar? -->
   <Layout :current-page="$options.metaInfo.title">
-    <h1>About us</h1>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Error doloremque omnis animi, eligendi magni a voluptatum, vitae, consequuntur rerum illum odit fugit assumenda rem dolores inventore iste reprehenderit maxime! Iusto.</p>
+    <p>Under contruction...</p>
   </Layout>
 </template>
 

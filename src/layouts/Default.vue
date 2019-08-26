@@ -1,6 +1,6 @@
 <template>
   <div class="font-sans text-2xl">
-    <NavBar :current-page="currentPage"/>
+    <NavBar />
 
     <div class="px-5 lg:mx-0">
       <slot/>
@@ -13,8 +13,5 @@ import NavBar from '~/components/NavBar'
 
 export default {
   components: {NavBar},
-  props: {
-    currentPage: String,
-  },
 }
 </script>

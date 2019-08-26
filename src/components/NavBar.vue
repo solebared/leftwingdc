@@ -55,9 +55,6 @@ query {
 
 <script>
 export default {
-  props: {
-    currentPage: String,
-  },
   data() {
     return {
       collapsed: true,
@@ -76,6 +73,9 @@ export default {
     },
     remainingNavItems() {
       return this.allNavItems.filter(item => item.path != this.currentPage)
+    },
+    currentPage() {
+      return this.$route.path
     },
   },
   watch: {

@@ -34,7 +34,7 @@
       </transition>
 
       <div class="block w-full">
-        <hr class="border-red-700 mt-4" />
+        <hr class="border-red-700 shadow mt-4" />
       </div>
     </nav>
   </header>
@@ -42,7 +42,7 @@
 
 <static-query>
 query {
-  navPages: allContentPage(filter: {navIndex: {gt: 0}}, sortBy: "navIndex", order: ASC) {
+  navPages: allContentPage(filter: {navPage: {eq: true}}, sortBy: "navIndex", order: ASC) {
     edges {
       node {
         title

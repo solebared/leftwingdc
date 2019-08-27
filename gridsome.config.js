@@ -19,15 +19,15 @@ module.exports = {
       },
     },
     {
-      use: 'gridsome-plugin-netlify-cms',
-    },
-    {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'ContentPage',
-        path: 'content/nav-pages/*.md',
+        path: 'content/pages/*.md',
         route: '/:slug',
       },
+    },
+    {
+      use: 'gridsome-plugin-netlify-cms',
     },
     {
       use: 'gridsome-plugin-netlify-cms-paths',

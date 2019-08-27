@@ -19,6 +19,9 @@ module.exports = {
       }
     },
     {
+      use: 'gridsome-plugin-netlify-cms'
+    },
+    {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'ContentPage',

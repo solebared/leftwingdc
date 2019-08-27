@@ -8,12 +8,14 @@
   },
   "dependencies": {
     "gridsome": "^0.6.0",
+    "gridsome-plugin-netlify-cms": "^1.0.9",
+    "netlify-cms": "^2.9.7",
     "typeface-annie-use-your-telescope": "^0.0.72",
     "typeface-open-sans": "^0.0.75"
   },
   "devDependencies": {
-    "gridsome-plugin-tailwindcss": "^2.2.19",
     "@gridsome/source-filesystem": "^0.5.0",
-    "@gridsome/transformer-remark": "^0.3.2"
+    "@gridsome/transformer-remark": "^0.3.2",
+    "gridsome-plugin-tailwindcss": "^2.2.19"
   }
 }

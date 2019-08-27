@@ -16,10 +16,10 @@ module.exports = {
         shouldPurge: true,
         shouldImport: true,
         shouldTimeTravel: true,
-      }
+      },
     },
     {
-      use: 'gridsome-plugin-netlify-cms'
+      use: 'gridsome-plugin-netlify-cms',
     },
     {
       use: '@gridsome/source-filesystem',
@@ -27,7 +27,14 @@ module.exports = {
         typeName: 'ContentPage',
         path: 'content/nav-pages/*.md',
         route: '/:slug',
-      }
-    }
+      },
+    },
+    {
+      use: 'gridsome-plugin-netlify-cms-paths',
+      options: {
+        contentTypes: ['ContentPage'],
+        coverField: 'image',
+      },
+    },
   ],
 }

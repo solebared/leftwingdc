@@ -1,7 +1,7 @@
 ---
 title: About us
 navIndex: 1
-image: ../images/lwfc-logo.jpg
+image: /images/uploads/lwfc-logo.jpg
 ---
 
 Still under contruction...

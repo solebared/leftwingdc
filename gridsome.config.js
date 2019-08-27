@@ -25,7 +25,7 @@ module.exports = {
       use: '@gridsome/source-filesystem',
       options: {
         typeName: 'ContentPage',
-        path: 'content/pages/*.md',
+        path: 'content/nav-pages/*.md',
         route: '/:slug',
       }
     }

@@ -1,6 +1,6 @@
 backend:
   name: git-gateway
-  branch: master
+  branch: initial-content
 
 publish_mode: editorial_workflow
 
@@ -8,21 +8,21 @@ media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  # - name: "navPage"
-    # label: "Top-level Page"
-    # folder: "content/nav-pages"
-    # create: true
-    # slug: {{slug}}
-    # fields:
-      # - {name: "title",    widget: "string",   required: true, label: "Title"}
-      # - {name: "navIndex", widget: "number",   required: true, label: "Position in navigation"}
-      # - {name: "image",    widget: "image",    required: true, label: "Image"}
-      # - {name: "body",     widget: "markdown", required: true, label: "Body"}
+  - name: "navPage"
+    label: "Top-level Page"
+    folder: "content/nav-pages"
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {name: "title",    widget: "string",   required: true, label: "Title"}
+      - {name: "navIndex", widget: "number",   required: true, label: "Position in navigation"}
+      - {name: "image",    widget: "image",    required: true, label: "Image"}
+      - {name: "body",     widget: "markdown", required: true, label: "Body"}
   - name: "subPage"
     label: "Page"
-    folder: "content/sub-pages"
-    create: true
+    folder: "content/pages"
     slug: "{{slug}}"
+    create: true
     fields:
       - {name: "title",    widget: "string",   required: true, label: "Title"}
       - {name: "body",     widget: "markdown", required: true, label: "Body"}

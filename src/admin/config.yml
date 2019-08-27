@@ -8,21 +8,41 @@ media_folder: "static/images/uploads"
 public_folder: "/images/uploads"
 
 collections:
-  - name: "navPage"
-    label: "Top-level Page"
-    folder: "content/nav-pages"
-    slug: "{{slug}}"
-    create: true
-    fields:
-      - {name: "title",    widget: "string",   required: true, label: "Title"}
-      - {name: "navIndex", widget: "number",   required: true, label: "Position in navigation"}
-      - {name: "image",    widget: "image",    required: true, label: "Image"}
-      - {name: "body",     widget: "markdown", required: true, label: "Body"}
-  - name: "subPage"
-    label: "Page"
+  - name: "pages"
+    label: "Pages"
+    label_singular: "Page"
     folder: "content/pages"
     slug: "{{slug}}"
     create: true
     fields:
-      - {name: "title",    widget: "string",   required: true, label: "Title"}
-      - {name: "body",     widget: "markdown", required: true, label: "Body"}
+      - {name: "title", widget: "string", required: true,  label: "Title"}
+      - {name: "image", widget: "image",  required: false, label: "Image"}
+      - name:         "parent"
+        widget:       "relation"
+        label:        "Parent page"
+        collection:   "pages"
+        valueField:   "title"
+        searchFields: ["title"]
+        required:     false
+      - {name: "body",     widget: "markdown", required: true,  label: "Body"}
+      - {name: "navPage",  widget: "boolean",  required: false, label: "Include in navigation menu?"}
+      - {name: "navIndex", widget: "number",   required: false, label: "Position in navigation"}
+
+  - name: "accordions"
+    label: "Accordions"
+    label_singular: "Accordion"
+    folder: "content/accordions"
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {name: "title", widget: "string", required: true, label: "Title"}
+      - name:         "parent"
+        widget:       "relation"
+        label:        "For page"
+        collection:   "pages"
+        valueField:   "title"
+        searchFields: ["title"]
+        required:     true
+      - {name: "position",   widget: "number",   required: true,  label: "Position on page"}
+      - {name: "highlights", widget: "list",     required: false, label: "Highlights"}
+      - {name: "body",       widget: "markdown", required: false, label: "Body"}

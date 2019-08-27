@@ -23,7 +23,7 @@
 
 <page-query>
 query {
-  navPages: allContentPage(filter: {navIndex: {gt: 0}}, sortBy: "navIndex", order: ASC) {
+  navPages: allContentPage(filter: {navPage: {eq: true}}, sortBy: "navIndex", order: ASC) {
     edges {
       node {
         title

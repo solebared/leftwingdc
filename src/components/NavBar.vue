@@ -70,6 +70,7 @@ export default {
     },
     currentNavItem() {
       return this.allNavItems.find(item => item.path == this.currentPage)
+          || this.allNavItems.find(item => item.title == 'Home')
     },
     remainingNavItems() {
       return this.allNavItems.filter(item => item.path != this.currentPage)

@@ -1,6 +1,6 @@
 ---
 title: Circle
-belongsTo: Guide
+belongsTo: About us
 ---
 
 What is circle?

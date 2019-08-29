@@ -1,13 +1,16 @@
 <template>
   <Layout>
-    <div v-html="$page.contentPage.content" />
+    <div v-html="$page.currentPage.content" />
   </Layout>
 </template>
 
 <page-query>
-query ContentPage ($path: String!) {
-  contentPage: contentPage (path: $path) {
+query CurrentPage ($path: String!) {
+  currentPage: contentPage (path: $path) {
+    title
     content
+    path
+    parent
   }
 }
 </page-query>

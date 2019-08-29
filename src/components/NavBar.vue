@@ -2,7 +2,12 @@
   <header>
     <nav class="flex flex-wrap items-center justify-between text-4xl text-red-700 p-5">
       <a href="/" @click.prevent="toggle" class="flex-grow">
-        {{ currentNavItem.breadcrumbTitle || currentNavItem.title }}
+        {{ breadcrumbs[0] == 'Home' ? 'Left Wing DC' : breadcrumbs[0] }}
+
+        <span v-if="breadcrumbs[1]" class="text-3xl">
+          &gt;
+          {{ breadcrumbs[1] }}
+        </span>
       </a>
 
       <div class="block">
@@ -23,7 +28,7 @@
           class="block w-full text-black"
         >
           <g-link
-            v-for="item in remainingNavItems"
+            v-for="item in remainingNavPages"
             :key="item.path"
             :to="item.path"
             class="block w-full hover:text-red-700"
@@ -49,7 +54,7 @@ query {
         path
       }
     }
-  }
+  },
 }
 </static-query>
 
@@ -60,27 +65,29 @@ export default {
       collapsed: true,
     }
   },
+  homePage: {
+    title: 'Home',
+    path: '/',
+  },
   computed: {
-    allNavItems() {
-      return this.$static.navPages.edges.map((edge) => edge.node).concat([{
-        title: 'Home',
-        path: '/',
-        breadcrumbTitle: 'Left Wing DC',
-      }])
-    },
-    currentNavItem() {
-      return this.allNavItems.find(item => item.path == this.currentPage)
-          || this.allNavItems.find(item => item.title == 'Home')
-    },
-    remainingNavItems() {
-      return this.allNavItems.filter(item => item.path != this.currentPage)
+    currentPath() {
+      return this.$route.path
     },
     currentPage() {
-      return this.$route.path
+      return this.$page.currentPage || this.$options.homePage
+    },
+    breadcrumbs() {
+      return [this.currentPage.parent, this.currentPage.title].filter(crumb => crumb)
+    },
+    allNavPages() {
+      return this.$static.navPages.edges.map((edge) => edge.node).concat([this.$options.homePage])
+    },
+    remainingNavPages() {
+      return this.allNavPages.filter(page => page.title != this.breadcrumbs[0])
     },
   },
   watch: {
-    currentPage() {
+    currentPath() {
       this.collapsed = true
     },
   },

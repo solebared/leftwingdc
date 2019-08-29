@@ -1,5 +1,5 @@
 <template>
-  <Layout current-page="/">
+  <Layout>
     <nav class="flex flex-wrap items-center justify-around">
       <figure
         v-for="({title, path, image}) in navPages"
@@ -31,7 +31,7 @@ query {
         image (width: 300, quality: 100)
       }
     }
-  }
+  },
 }
 </page-query>
 

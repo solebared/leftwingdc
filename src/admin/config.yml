@@ -28,6 +28,51 @@ collections:
       - {name: "navPage",  widget: "boolean",  required: false, label: "Include in navigation menu?"}
       - {name: "navIndex", widget: "number",   required: false, label: "Position in navigation"}
 
+  - name: "listings"
+    label: "Page listings"
+    label_singular: "Page listing"
+    folder: "content/listings"
+    slug: "{{slug}}"
+    create: true
+    fields:
+      - {name: "title", widget: "string", required: true,  label: "Title"}
+      - {name: "image", widget: "image",  required: false, label: "Image"}
+      - name:         "parent"
+        label:        "Parent page"
+        widget:       "relation"
+        collection:   "pages"
+        valueField:   "title"
+        searchFields: ["title"]
+        required:     false
+      - {name: "body", widget: "markdown", required: false, label: "Body"}
+      - name:     "children"
+        label:    "Child pages"
+        widget:   "list"
+        required: true
+        types:
+          - name: "contentPage"
+            label: "Page"
+            widget: "object"
+            field:
+              name: "ref"
+              label: "Link to"
+              widget: "relation"
+              collection: "pages"
+              valueField: "title"
+              searchFields: ["title"]
+              required: true
+          - name: "listing"
+            label: "Page listing"
+            widget: "object"
+            field:
+              name: "ref"
+              label: "Link to"
+              widget: "relation"
+              collection: "listings"
+              valueField: "title"
+              searchFields: ["title"]
+              required: true
+
   - name: "accordions"
     label: "Accordions"
     label_singular: "Accordion"

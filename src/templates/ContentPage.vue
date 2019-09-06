@@ -14,3 +14,13 @@ query CurrentPage ($path: String!) {
   }
 }
 </page-query>
+
+<script>
+export default {
+  metaInfo() {
+    return {
+      title: this.$page.currentPage.title,
+    }
+  },
+}
+</script>
